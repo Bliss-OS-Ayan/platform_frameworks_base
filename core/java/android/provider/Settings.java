@@ -5479,6 +5479,11 @@ public final class Settings {
         public static final String FOD_COLOR = "fod_color";
 
         /**
+         * @hide
+         */
+        public static final String USE_OLD_MOBILETYPE = "use_old_mobiletype";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
@@ -5614,6 +5619,7 @@ public final class Settings {
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_VIEW_LOCATION);
             PRIVATE_SETTINGS.add(NETWORK_TRAFFIC_LAYOUT);
             PRIVATE_SETTINGS.add(SHOW_FOURG);
+            PRIVATE_SETTINGS.add(USE_OLD_MOBILETYPE);
         }
 
         /**
