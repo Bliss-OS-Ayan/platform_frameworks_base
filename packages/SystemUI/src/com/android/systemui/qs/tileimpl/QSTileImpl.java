@@ -537,6 +537,7 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
                     return Utils.getColorAttrDefaultColor(context, android.R.attr.textColorSecondary);
                 }
             case Tile.STATE_ACTIVE:
+<<<<<<< HEAD
                 if (qsTileStyle == 7 || qsTileStyle == 9 || qsTileStyle == 10 || qsTileStyle == 12 ||
                         qsTileStyle == 13 || qsTileStyle == 14) {
                     return Utils.getColorAttrDefaultColor(context, android.R.attr.textColorPrimaryInverse);
@@ -547,6 +548,9 @@ public abstract class QSTileImpl<TState extends State> implements QSTile, Lifecy
                         return Utils.getColorAttrDefaultColor(context, android.R.attr.colorPrimary);
                     }
                 }
+=======
+                return Utils.getColorAttrDefaultColor(context, android.R.attr.colorAccent);
+>>>>>>> 3a5df3b10a4... fwb: Color qs tiles the 404 way
             default:
                 Log.e("QSTile", "Invalid state " + state);
                 return 0;

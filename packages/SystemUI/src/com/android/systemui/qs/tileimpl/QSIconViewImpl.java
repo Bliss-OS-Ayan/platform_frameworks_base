@@ -198,7 +198,7 @@ public class QSIconViewImpl extends QSIconView {
                 if (setQsUseNewTint) {
                     setTint(iv, toColor);
                 } else {
-                    setTint(iv, Color.argb(alpha, channel, channel, channel));
+                setTint(iv, toColor);
                 }
             });
             anim.addListener(new AnimatorListenerAdapter() {
