@@ -65,6 +65,7 @@ import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.provider.MediaStore;
+import android.text.format.Time;
 import android.view.IWindowManager;
 import android.view.WindowManagerGlobal;
 import android.widget.Toast;
@@ -106,6 +107,15 @@ public class BlissUtils {
         NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
         NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
         return wifi.isConnected() || mobile.isConnected();
+    }
+
+    // Returns today's passed time in Millisecond
+    public static long getTodayMillis() {
+        final long passedMillis;
+        Time time = new Time();
+        time.set(System.currentTimeMillis());
+        passedMillis = ((time.hour * 60 * 60) + (time.minute * 60) + time.second) * 1000;
+        return passedMillis;
     }
 
     public static String batteryTemperature(Context context, Boolean ForC) {
