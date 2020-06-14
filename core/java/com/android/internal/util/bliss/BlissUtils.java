@@ -65,7 +65,6 @@ import android.view.InputDevice;
 import android.view.KeyCharacterMap;
 import android.view.KeyEvent;
 import android.provider.MediaStore;
-import android.text.format.Time;
 import android.view.IWindowManager;
 import android.view.WindowManagerGlobal;
 import android.widget.Toast;
@@ -589,5 +588,10 @@ public class BlissUtils {
                 e.printStackTrace();
             }
         }
+
+    public static int getThemeAccentColor (final Context context) {
+        final TypedValue value = new TypedValue ();
+        context.getTheme ().resolveAttribute (android.R.attr.colorAccent, value, true);
+        return value.data;
     }
 }
