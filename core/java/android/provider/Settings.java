@@ -5023,10 +5023,17 @@ public final class Settings {
         public static final String VOWIFI_ICON = "vowifi_icon";
 
         /**
+         * VoWiFi icon style
+         * @hide
+         */
+        public static final String VOWIFI_ICON_STYLE = "vowifi_icon_style";
+
+        /**
          * Style of clock
          * 0 - Left Clock (default)
          * 1 - Center Clock
          * 2 - Right Clock
+
          * @hide
          */
         public static final String STATUSBAR_CLOCK_STYLE = "statusbar_clock_style";
