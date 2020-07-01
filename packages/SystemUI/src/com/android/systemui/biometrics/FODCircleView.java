@@ -408,7 +408,7 @@ public class FODCircleView extends ImageView implements TunerService.Tunable {
                     Settings.System.FOD_ANIM),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.FOD_ICON), false, this, UserHandle.USER_ALL);
+                    Settings.System.FOD_ICON),
                     false, this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.FOD_COLOR),
