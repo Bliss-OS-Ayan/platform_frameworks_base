@@ -24,6 +24,8 @@ import android.annotation.ColorInt;
 import android.app.ActivityManager;
 import android.app.AlarmManager;
 import android.content.Context;
+import android.database.ContentObserver;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
@@ -35,6 +37,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.UserHandle;
+import android.os.Looper;
 import android.provider.AlarmClock;
 import android.provider.CalendarContract;
 import android.provider.Settings;
@@ -79,6 +82,7 @@ import com.android.systemui.privacy.PrivacyChipEvent;
 import com.android.systemui.privacy.PrivacyItem;
 import com.android.systemui.privacy.PrivacyItemController;
 import com.android.systemui.qs.QSDetail.Callback;
+import com.android.systemui.statusbar.info.DataUsageView;
 import com.android.systemui.qs.carrier.QSCarrierGroup;
 import com.android.systemui.settings.BrightnessController;
 import com.android.systemui.statusbar.CommandQueue;
@@ -174,6 +178,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     // Used for RingerModeTracker
     private final LifecycleRegistry mLifecycle = new LifecycleRegistry(this);
 
+    private DataUsageView mDataUsageView;
+
     private boolean mHasTopCutout = false;
     private int mStatusBarPaddingTop = 0;
     private int mRoundedCornerPadding = 0;
@@ -264,6 +270,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 mQuickQsBrightness.findViewById(R.id.brightness_icon),
                 mQuickQsBrightness.findViewById(R.id.brightness_slider),
                 mBroadcastDispatcher);
+        mDataUsageView = findViewById(R.id.data_sim_usage);
 
         // Views corresponding to the header info section (e.g. ringer and next alarm).
         mHeaderTextContainerView = findViewById(R.id.header_text_container);
@@ -488,6 +495,14 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         updateStatusIconAlphaAnimator();
         updateHeaderTextContainerAlphaAnimator();
         updatePrivacyChipAlphaAnimator();
+	updateDataUsageView();
+    }
+
+    private void updateDataUsageView() {
+        if (mDataUsageView.isDataUsageEnabled())
+            mDataUsageView.setVisibility(View.VISIBLE);
+        else
+            mDataUsageView.setVisibility(View.GONE);
     }
 
     private void updateStatusIconAlphaAnimator() {
@@ -844,6 +859,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             mHeaderTextContainerView.setAlpha(MathUtils.lerp(0.0f, mExpandedHeaderAlpha,
                     mKeyguardExpansionFraction));
             updateHeaderTextContainerAlphaAnimator();
+
         }
     }
 
