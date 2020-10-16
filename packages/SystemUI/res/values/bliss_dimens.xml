@@ -99,4 +99,7 @@
 
     <!-- Bottom margin size when fingerprint in display is active -->
     <dimen name="keyguard_indication_margin_bottom_fingerprint_in_display">30dp</dimen>
+
+    <!-- QS Header data usage info -->
+    <string name="usage_data">used</string>
 </resources>
