@@ -259,7 +259,8 @@ public class QSContainerImpl extends FrameLayout {
     private void updatePaddingsAndMargins() {
         for (int i = 0; i < getChildCount(); i++) {
             View view = getChildAt(i);
-            if (view == mQSCustomizer) {
+            if (view == mStatusBarBackground || view == mBackgroundGradient
+                    || view == mQSCustomizer || view == mQSDetail) {
                 // Some views are always full width
                 continue;
             }
