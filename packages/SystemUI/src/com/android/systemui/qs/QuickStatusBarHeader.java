@@ -126,6 +126,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private final ActivityStarter mActivityStarter;
     private final BlurUtils mBlurUtils;
     private final Vibrator mVibrator;
+    private final BlurUtils mBlurUtils;
 
     private QSPanel mQsPanel;
 
@@ -242,6 +243,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mUiEventLogger = uiEventLogger;
         mBlurUtils = new BlurUtils(mContext.getResources(), new DumpManager());
         mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
+        mBlurUtils = new BlurUtils(mContext.getResources(), new DumpManager());
     }
 
     @Override
