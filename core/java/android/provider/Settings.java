@@ -5665,6 +5665,15 @@ public final class Settings {
         public static final String SETTINGS_SPACER = "settings_spacer";
 
         /**
+         * Whether to show artist and title on ambient/lock screen on new music tracks
+         * 0 - don't show track info
+         * 1 - show track info on bottom of Ambient Display (Pixel style)
+         * 2 - show track info within cLock widget (AOSP style)
+         * @hide
+         */
+        public static final String AMBIENT_MUSIC_TICKER = "ambient_music_ticker";
+
+        /**
          * Keys we no longer back up under the current schema, but want to continue to
          * process when restoring historical backup datasets.
          *
