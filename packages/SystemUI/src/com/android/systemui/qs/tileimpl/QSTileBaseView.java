@@ -19,6 +19,7 @@ import android.annotation.ColorInt;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.MonetWannabe;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -75,8 +76,8 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
     private int mColorActiveAlpha;
     private int mColorTwelveAlpha;
     private int mColorDisabledAlpha;
-    private final int mColorInactive;
-    private final int mColorDisabled;
+    private int mColorInactive;
+    private int mColorDisabled;
     private int mCircleColor;
     private int mBgSize;
 
@@ -137,6 +138,10 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
         int setQsUseNewTint = Settings.System.getIntForUser(context.getContentResolver(),
                 Settings.System.QS_PANEL_BG_USE_NEW_TINT, 1, UserHandle.USER_CURRENT);
 
+        if (MonetWannabe.isMonetEnabled(context)) {
+            mColorInactive = MonetWannabe.getInactiveAccent(context);
+            mColorDisabled = mColorInactive;
+           } else {
         if (setQsUseNewTint == 1) {
             mColorActive = mColorActiveAlpha;
             mColorDisabled = context.getResources().getColor(R.color.qs_tile_background_color_disabled);
@@ -149,8 +154,9 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
         } else {
             mColorDisabled = Utils.getDisabled(context,
                     Utils.getColorAttrDefaultColor(context, android.R.attr.textColorTertiary));
+            mColorInactive = Utils.getColorAttrDefaultColor(context, android.R.attr.textColorSecondary);
+
         }
-        mColorInactive = Utils.getColorAttrDefaultColor(context, android.R.attr.textColorSecondary);
 
         setPadding(0, 0, 0, 0);
         setClipChildren(false);
@@ -335,6 +341,7 @@ public class QSTileBaseView extends com.android.systemui.plugins.qs.QSTileView {
             case Tile.STATE_ACTIVE:
                 return mColorActive;
             case Tile.STATE_INACTIVE:
+                return mColorInactive;
             case Tile.STATE_UNAVAILABLE:
                 return mColorDisabled;
             default:
