@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.android.internal.util.bliss.fod;
+package com.android.internal.util.bliss;
 
 import android.content.Context;
 
