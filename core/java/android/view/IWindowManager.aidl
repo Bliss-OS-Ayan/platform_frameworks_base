@@ -769,6 +769,7 @@ interface IWindowManager
      */
     void sendCustomAction(in Intent intent);
 
+    /**
      * Long screenshot
      * @hide
      */
