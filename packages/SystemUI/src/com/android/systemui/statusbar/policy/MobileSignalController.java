@@ -660,7 +660,6 @@ public class MobileSignalController extends SignalController<
                     statusIcon.contentDescription);
         }
 
-        int volteIcon = isVolteSwitchOn() ? getVolteResId() : 0;
         callback.setMobileDataIndicators(statusIcon, qsIcon, typeIcon, qsTypeIcon,
                 activityIn, activityOut, volteIcon, dataContentDescription, dataContentDescriptionHtml,
                 description, icons.mIsWide, mSubscriptionInfo.getSubscriptionId(),
@@ -885,7 +884,7 @@ public class MobileSignalController extends SignalController<
 
     private boolean isVowifiAvailable() {
         return mCurrentState.voiceCapable &&  mCurrentState.imsRegistered
-                && (getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN
+                && (mServiceState.getDataNetworkType() == TelephonyManager.NETWORK_TYPE_IWLAN
                 || mIsVowifiAvailable);
     }
 
