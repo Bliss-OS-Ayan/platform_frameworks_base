@@ -1213,9 +1213,6 @@ public final class PowerManagerService extends SystemService
         resolver.registerContentObserver(Settings.System.getUriFor(
                 Settings.System.SMART_CUTOFF_RESUME_TEMPERATURE),
                 false, mSettingsObserver, UserHandle.USER_ALL);
-        resolver.registerContentObserver(Settings.System.getUriFor(
-                Settings.System.SMART_CHARGING_RESET_STATS),
-                false, mSettingsObserver, UserHandle.USER_ALL);
         IVrManager vrManager = IVrManager.Stub.asInterface(getBinderService(Context.VR_SERVICE));
         if (vrManager != null) {
             try {
@@ -1380,8 +1377,16 @@ public final class PowerManagerService extends SystemService
         mSmartChargingResumeLevel = Settings.System.getInt(resolver,
                 Settings.System.SMART_CHARGING_RESUME_LEVEL,
                 mSmartChargingResumeLevelDefaultConfig);
-         mSmartChargingResetStats = Settings.System.getInt(resolver,
+        mSmartChargingResetStats = Settings.System.getInt(resolver,
                 Settings.System.SMART_CHARGING_RESET_STATS, 0) == 1;
+        mSmartCutoffEnabled = Settings.System.getInt(resolver,
+                Settings.System.SMART_CUTOFF, 0) == 1;
+        mSmartCutoffTemperature = Settings.System.getInt(resolver,
+                Settings.System.SMART_CUTOFF_TEMPERATURE,
+                mSmartCutoffTemperatureDefaultConfig);
+        mSmartCutoffResumeTemperature = Settings.System.getInt(resolver,
+                Settings.System.SMART_CUTOFF_RESUME_TEMPERATURE,
+                mSmartCutoffResumeTemperatureConfig);
 
         if (mSupportsDoubleTapWakeConfig) {
             boolean doubleTapWakeEnabled = Settings.Secure.getIntForUser(resolver,
@@ -2221,16 +2226,7 @@ public final class PowerManagerService extends SystemService
                         Slog.e(TAG, "failed to reset battery statistics");
                     }
                 }
-        if (mSmartChargingEnabled && !mPowerInputSuspended && (mBatteryLevel >= mSmartChargingLevel)) {
-            Slog.i(TAG, "Smart charging reset stats: " + mSmartChargingResetStats);
-            if (mSmartChargingResetStats) {
-                try {
-                     mBatteryStats.resetStatistics();
-                } catch (RemoteException e) {
-                         Slog.e(TAG, "failed to reset battery statistics");
-                }
-             }
-          }
+            }
         }
     }
 
