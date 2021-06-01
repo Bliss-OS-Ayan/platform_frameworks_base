@@ -44,7 +44,7 @@ import android.util.Range;
 import com.android.internal.R;
 import com.android.internal.annotations.VisibleForTesting;
 import com.android.internal.util.ArrayUtils;
-import com.android.internal.util.octavi.OctaviUtils;
+import com.android.internal.util.bliss.BlissUtils;
 
 import java.time.ZonedDateTime;
 import java.util.Iterator;
@@ -306,7 +306,7 @@ public class DataUsageController {
     public DataUsageInfo getDailyDataUsageInfo(NetworkTemplate template) {
         final NetworkPolicy policy = findNetworkPolicy(template);
         final long end = System.currentTimeMillis();
-        long start = end - OctaviUtils.getTodayMillis();
+        long start = end - BlissUtils.getTodayMillis();
 
         final long totalBytes = getUsageLevel(template, start, end);
         if (totalBytes < 0L) {
