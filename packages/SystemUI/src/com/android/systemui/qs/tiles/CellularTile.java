@@ -65,7 +65,6 @@ public class CellularTile extends QSTileImpl<SignalState> {
 
     private final CellSignalCallback mSignalCallback = new CellSignalCallback();
     private final ActivityStarter mActivityStarter;
-    private final KeyguardStateController mKeyguard;
 
     @Inject
     public CellularTile(QSHost host, KeyguardStateController keyguardStateController,
