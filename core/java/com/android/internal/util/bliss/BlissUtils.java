@@ -588,10 +588,12 @@ public class BlissUtils {
                 e.printStackTrace();
             }
         }
+    }
 
     public static int getThemeAccentColor (final Context context) {
         final TypedValue value = new TypedValue ();
         context.getTheme ().resolveAttribute (android.R.attr.colorAccent, value, true);
         return value.data;
     }
+
 }

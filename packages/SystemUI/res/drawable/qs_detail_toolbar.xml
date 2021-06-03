@@ -15,11 +15,7 @@
 -->
 <inset xmlns:android="http://schemas.android.com/apk/res/android">
     <shape>
-<<<<<<< HEAD
         <solid android:color="@android:color/transparent"/>
-=======
-        <solid android:color="@color/qs_header_background"/>
->>>>>>> b18a15e6cb0... SystemUI: Enable and fix QS detail view, adapt layout to 11
         <corners
             android:topLeftRadius="?android:attr/dialogCornerRadius"
             android:topRightRadius="?android:attr/dialogCornerRadius" />
