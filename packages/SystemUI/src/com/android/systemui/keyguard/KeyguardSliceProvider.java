@@ -335,8 +335,12 @@ public class KeyguardSliceProvider extends SliceProvider implements
     }
 
     protected void addWeather(ListBuilder builder) {
-        if (!mWeatherClient.isOmniJawsEnabled()) return;
-        if (!mWeatherEnabled || !mShowWeatherSlice || mWeatherInfo == null || mPackageInfo == null) {
+        String currentClock = Settings.Secure.getString(
+                mContentResolver, Settings.Secure.LOCK_SCREEN_CUSTOM_CLOCK_FACE);
+        boolean isAndroidSClockSelected = currentClock == null ? false : currentClock.contains("Android") && currentClock.contains("S");
+        boolean isTwelveClockSelected = currentClock == null ? false : currentClock.contains("Twelve");
+        if (!mWeatherEnabled || !mShowWeatherSlice || !mWeatherClient.isOmniJawsEnabled() ||
+                mWeatherInfo == null || mPackageInfo == null || isAndroidSClockSelected || isTwelveClockSelected) {
             return;
         }
         String temperatureText = mWeatherInfo.temp + " " + mWeatherInfo.tempUnits;
