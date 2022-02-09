@@ -41,6 +41,7 @@ import android.hardware.fingerprint.IUdfpsOverlayController;
 import android.hardware.fingerprint.IUdfpsOverlayControllerCallback;
 import android.media.AudioAttributes;
 import android.net.Uri;
+import android.os.Looper;
 import android.os.Handler;
 import android.os.PowerManager;
 import android.os.Process;
@@ -126,6 +127,7 @@ public class UdfpsController implements DozeReceiver, UdfpsHbmProvider {
     @NonNull private final DumpManager mDumpManager;
     @NonNull private final KeyguardUpdateMonitor mKeyguardUpdateMonitor;
     @Nullable private final Vibrator mVibrator;
+    @NonNull private final Handler mMainHandler;
     @NonNull private final FalsingManager mFalsingManager;
     @NonNull private final PowerManager mPowerManager;
     @NonNull private final AccessibilityManager mAccessibilityManager;
@@ -586,6 +588,7 @@ public class UdfpsController implements DozeReceiver, UdfpsHbmProvider {
         mContext = context;
         mExecution = execution;
         // TODO (b/185124905): inject main handler and vibrator once done prototyping
+        mMainHandler = new Handler(Looper.getMainLooper());
         mVibrator = vibrator;
         mInflater = inflater;
         // The fingerprint manager is queried for UDFPS before this class is constructed, so the

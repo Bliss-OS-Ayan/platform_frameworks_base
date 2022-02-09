@@ -642,6 +642,8 @@ public class StatusBar extends SystemUI implements DemoMode,
     private final NotificationRemoteInputManager mRemoteInputManager;
     private boolean mWallpaperSupported;
 
+    private VisualizerView mVisualizerView;
+
     private final BroadcastReceiver mWallpaperChangedReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {

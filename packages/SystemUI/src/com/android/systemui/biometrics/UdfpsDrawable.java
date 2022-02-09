@@ -129,7 +129,7 @@ public abstract class UdfpsDrawable extends Drawable {
                 Settings.System.OMNI_CUSTOM_FP_ICON,
                 UserHandle.USER_CURRENT);
 
-        if (AncientUtils.isPackageInstalled(mContext, udfpsResourcesPackage)) {
+        if (BlissUtils.isPackageInstalled(mContext, udfpsResourcesPackage)) {
             try {
                 PackageManager pm = mContext.getPackageManager();
                 udfpsRes = pm.getResourcesForApplication(udfpsResourcesPackage);

@@ -49,6 +49,7 @@ import android.util.TypedValue;
 import android.view.ViewDebug;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.animation.Interpolator;
+import android.provider.Settings;
 
 import androidx.core.graphics.ColorUtils;
 
