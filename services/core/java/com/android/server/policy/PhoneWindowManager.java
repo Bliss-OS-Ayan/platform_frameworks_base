@@ -1783,14 +1783,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         mSwipeToScreenshot = new SwipeToScreenshotListener(context, new SwipeToScreenshotListener.Callbacks() {
             @Override
             public void onSwipeThreeFinger() {
-                if (!mPocketLockShowing) {
                     if (mScreenshotType == 1) {
                         mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_SELECTED_REGION);
                     } else {
                         mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
                     }
                     mHandler.postDelayed(mScreenshotRunnable, getScreenshotChordLongPressDelay());
-                }
             }
         });
         mWakeGestureListener = new MyWakeGestureListener(mContext, mHandler);

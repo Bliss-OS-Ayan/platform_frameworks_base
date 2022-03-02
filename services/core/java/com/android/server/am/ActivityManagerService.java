@@ -7514,11 +7514,7 @@ public class ActivityManagerService extends IActivityManager.Stub
         }
         mAppErrors.loadAppsNotReportingCrashesFromConfig(res.getString(
                 com.android.internal.R.string.config_appsNotReportingCrashes));
-<<<<<<< HEAD
-=======
-        mSwipeToScreenshotObserver.registerObserver();
         mCutoutFullscreenController.registerObserver();
->>>>>>> 96c5a1abf9b9... Fix NPE with cutout force full screen
     }
 
     /**
